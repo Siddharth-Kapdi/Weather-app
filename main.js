@@ -1,21 +1,27 @@
 const inputValue = document.querySelector(".search-bar");
 const searchButton = document.querySelector(".search-button");
 
+var city = "anjar"; // Default city
+fetchWeatherData(`${city}`);
+
 searchButton.addEventListener("click", (e) => {
   e.preventDefault();
-  const city = inputValue.value.trim();
+
+  city = inputValue.value.trim();
+  // console.log(city);
 
   if (city) {
-    console.log(city);
+    // console.log(city);
+    fetchWeatherData(`${city}`);
   } else {
     console.log("Please enter a city name.");
   }
   inputValue.value = ""; // Clear the input field after search
-
-  fetchWeatherData(`${city}`);
 });
 
 async function fetchWeatherData(city) {
+  console.log(city);
+
   const apiUrl = `https://api.weatherapi.com/v1/current.json?key=f27ddc35824744ddab3130428250707&q=${city}`;
 
   try {
